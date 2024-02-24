@@ -47,17 +47,9 @@ BrowserDictionaryLoader.prototype.loadArrayBuffer = function (url, callback) {
         }
         var arraybuffer = this.response;
 
-try {
-    // Gunzipの試行
-    var gz = new zlib.Zlib.Gunzip(new Uint8Array(arraybuffer));
-    var typed_array = gz.decompress();
-
-    // デコンプレッションが成功した場合、デコンプレッションされたデータをコールバックに渡す
-    callback(null, typed_array.buffer);
-} catch (e) {
-    // デコンプレッションに失敗した場合、元のデータをコールバックに渡す
-    callback(null, arraybuffer);
-}
+        //var gz = new zlib.Zlib.Gunzip(new Uint8Array(arraybuffer));
+        //var typed_array = gz.decompress();
+        callback(null, arraybuffer);
     };
     xhr.onerror = function (err) {
         callback(err, null);
